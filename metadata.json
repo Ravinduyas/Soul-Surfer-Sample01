@@ -1,0 +1,6 @@
+{
+  "name": "BRAVE Surf School",
+  "description": "Surf lessons, surf camps and coaching for every level with BRAVE Surf School. Small groups, certified coaches and a beach house on Weligama Bay.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,14 +1,27 @@
-export interface Lesson {
+// A weekly surf & stay package (Moderate Surf, Surf & Yoga, Full Surf)
+export interface SurfPackage {
   id: string;
   name: string;
   subtitle: string;
   description: string;
-  benefits: string[];
-  duration: string;
-  level: 'Easy' | 'Moderate' | 'Challenging' | 'Tailored';
-  price: string;
+  surfLessons: string;
+  yoga: string;
+  // Price per person for 7 nights, by room type id
+  rates: Record<RoomId, number>;
   image: string;
-  coach: string;
+  highlighted?: boolean;
+}
+
+export type RoomId = 'dorm' | 'single' | 'double';
+
+export interface Room {
+  id: RoomId;
+  name: string;
+  guests: string;
+  summary: string;
+  features: string[];
+  priceNote: string;
+  images: string[];
 }
 
 export interface AboutFeatureNode {
@@ -18,50 +31,48 @@ export interface AboutFeatureNode {
   description: string;
 }
 
-export interface CampItem {
+export interface Activity {
   id: string;
   title: string;
-  subtitle: string;
-  type: 'camp' | 'session' | 'trip' | 'retreat';
-  date: string;
-  location: string;
+  eyebrow: string;
   description: string;
   image: string;
-  price?: string;
+  gallery: string[];
   verticalLabel: string;
 }
 
-export interface ScheduleSlot {
+export interface DayMoment {
   id: string;
-  day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
-  time: string;
+  label: string;
   title: string;
-  coach: string;
-  level: 'All Levels' | 'Beginner' | 'Intermediate' | 'Advanced';
-  spot: 'Main Beach' | 'Point Break' | 'Reef Break';
-  capacity: number;
-  enrolled: number;
+  items: string[];
+  note: string;
 }
 
-export interface PricePackage {
+export interface Facility {
   id: string;
-  name: string;
-  price: string;
-  unit: string;
+  title: string;
+  caption: string;
   description: string;
-  features: string[];
-  highlighted?: boolean;
-}
-
-export interface Coach {
-  id: string;
-  name: string;
-  role: string;
-  bio: string;
-  years: number;
+  image: string;
 }
 
 export interface FaqItem {
   question: string;
   answer: string;
+}
+
+export type BlogBlock =
+  | { type: 'p' | 'heading' | 'quote'; text: string }
+  | { type: 'list'; items: string[] };
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+  image: string;
+  excerpt: string;
+  blocks: BlogBlock[];
 }

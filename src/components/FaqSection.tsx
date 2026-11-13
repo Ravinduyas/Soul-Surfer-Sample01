@@ -2,24 +2,37 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, Minus } from 'lucide-react';
 import { FAQS } from '../data/surfData';
+import { FaqItem } from '../types';
 
-export const FaqSection: React.FC = () => {
+interface FaqSectionProps {
+  items?: FaqItem[];
+  title?: string;
+  intro?: string;
+  id?: string;
+}
+
+export const FaqSection: React.FC<FaqSectionProps> = ({
+  items = FAQS,
+  title = 'FAQ',
+  intro = 'Everything you need to know before you book your stay at Soul Surfer Camp. Still have questions? Just ask.',
+  id = 'faq',
+}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative w-full rounded-[2.5rem] bg-[#f4efe6] text-[#3d372e] p-8 sm:p-12 md:p-16 my-6 shadow-xl overflow-hidden">
+    <section id={id} className="relative w-full rounded-[2.5rem] bg-[#f4efe6] text-[#3d372e] p-8 sm:p-12 md:p-16 my-6 shadow-xl overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-4">
           <h2 className="font-serif-cormorant text-4xl sm:text-5xl lg:text-6xl font-light tracking-[0.16em] uppercase text-[#3d372e]">
-            FAQ
+            {title}
           </h2>
           <p className="font-sans-body text-xs sm:text-sm font-light text-[#6b6255] mt-3 leading-relaxed">
-            The questions we hear most before a first lesson. Anything else, just ask.
+            {intro}
           </p>
         </div>
 
         <div className="lg:col-span-8 divide-y divide-[#d8d1c3] border-y border-[#d8d1c3]">
-          {FAQS.map((faq, idx) => {
+          {items.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div key={faq.question}>

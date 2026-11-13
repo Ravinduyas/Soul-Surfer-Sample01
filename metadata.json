@@ -1,6 +1,6 @@
 {
-  "name": "BRAVE Surf School",
-  "description": "Surf lessons, surf camps and coaching for every level with BRAVE Surf School. Small groups, certified coaches and a beach house on Weligama Bay.",
+  "name": "Soul Surfer Camp",
+  "description": "Boutique surf camp in Weligama, Sri Lanka - 20 seconds from the beach. Brand-new ensuite rooms, rooftop infinity pool, sea-view dining and surf & yoga packages from €390 a week.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

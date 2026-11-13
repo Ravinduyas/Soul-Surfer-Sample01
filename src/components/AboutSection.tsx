@@ -17,35 +17,35 @@ export const AboutSection: React.FC = () => {
   const activeNode = ABOUT_NODES.find((n) => n.id === activeNodeId) || ABOUT_NODES[0];
 
   return (
-    <section id="why-brave" className="relative w-full rounded-[2.5rem] bg-[#f4efe6] text-[#3d372e] p-8 sm:p-12 md:p-16 my-6 shadow-xl overflow-hidden">
+    <section id="why-us" className="relative w-full rounded-[2.5rem] bg-[#f4efe6] text-[#3d372e] p-8 sm:p-12 md:p-16 my-6 shadow-xl overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* LEFT COLUMN: STORY */}
           <div className="lg:col-span-6 flex flex-col space-y-6">
             <h2 className="font-serif-cormorant text-4xl sm:text-5xl lg:text-6xl font-light tracking-[0.16em] uppercase text-[#3d372e]">
-              WHY BRAVE
+              WHY US
             </h2>
 
             <div className="space-y-4 font-sans-body text-xs sm:text-sm font-light leading-relaxed text-[#5c5448]">
               <p className="font-normal text-[#2a362a]">
-                Surfing takes a little courage. We're here to make that first paddle out feel easy.
+                Built by experienced surf hosts who know Weligama and its waves.
               </p>
               <p>
-                Brave started with a few boards, a stretch of sand, and a simple belief: anyone can learn to surf with the right coach and the right waves.
+                Designed for travellers seeking a more boutique experience, Soul Surfer offers stylish accommodation, professional surf coaching, rooftop ocean views, and a peaceful atmosphere just moments from Weligama Beach.
               </p>
               <p>
-                Our lessons are small, patient and built around you. We read the ocean every morning, choose the safest spot for your level, and stay right beside you in the water.
+                It has its own character: the intimate feel of a boutique camp, with its own daily social events and community atmosphere, and hosts who know Weligama inside out.
               </p>
               <p>
-                Between sessions, our beach house is where surfers swap stories, rinse off the salt, and plan tomorrow's waves.
+                Throughout the week there are signature events to look forward to - live music nights, sunset boat parties, pool parties, beach games and long family dinners - the kind of evenings that turn a room full of strangers into a crew by the end of the week.
               </p>
             </div>
 
             <Link
-              to="/about"
+              to="/camp"
               className="w-fit flex items-center gap-2 text-xs font-sans-body uppercase tracking-[0.2em] text-[#2a362a] border-b border-[#2a362a]/40 hover:border-[#2a362a] pb-1 transition-colors"
             >
-              Meet the coaches <ArrowUpRight className="w-3.5 h-3.5" />
+              Inside the camp <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
@@ -55,16 +55,16 @@ export const AboutSection: React.FC = () => {
               {/* FAINT OUTER CIRCLE RING */}
               <div className="absolute inset-4 sm:inset-6 border border-[#3d372e]/20 rounded-full pointer-events-none" />
 
-              {/* CENTER CARD: SURFBOARD PHOTO WITH "BRAVE" */}
+              {/* CENTER CARD: CAMP PHOTO WITH THE NAME */}
               <div className="relative z-10 w-44 sm:w-52 h-64 sm:h-72 rounded-xl overflow-hidden shadow-2xl bg-black border border-white/20 group">
                 <img
-                  src={IMAGES.boardRack}
-                  alt="Surfboards lined up at the Brave beach house"
+                  src={IMAGES.surfHosts}
+                  alt="Soul Surfer Camp surf experience"
                   className="w-full h-full object-cover filter brightness-[0.7] contrast-110 group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-center justify-center p-4">
-                  <span className="font-serif-cormorant text-3xl sm:text-4xl font-light tracking-[0.2em] uppercase text-white drop-shadow-md text-center">
-                    BRAVE
+                  <span className="font-serif-cormorant text-3xl sm:text-4xl font-light tracking-[0.2em] uppercase text-white drop-shadow-md text-center leading-tight">
+                    SOUL<br />SURFER
                   </span>
                 </div>
               </div>

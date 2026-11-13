@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
-/* Scales the whole site to 80%: text, spacing and radii are all rem-based */
+/* Scales the whole site: text, spacing and radii are all rem-based.
+   80% on laptops, growing on wide screens so the layout fills big monitors instead of floating in the middle */
 html {
   font-size: 80%;
+}
+@media (min-width: 1600px) {
+  html { font-size: 88%; }
+}
+@media (min-width: 1920px) {
+  html { font-size: 100%; }
+}
+@media (min-width: 2200px) {
+  html { font-size: 112%; }
+}
+@media (min-width: 2560px) {
+  html { font-size: 125%; }
 }
 
 @layer utilities {

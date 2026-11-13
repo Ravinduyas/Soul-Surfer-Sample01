@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowDownRight } from 'lucide-react';
 import { useModals } from '../context/ModalContext';
-import { IMAGES, SCHOOL, LESSONS } from '../data/surfData';
+import { IMAGES, CAMP } from '../data/surfData';
 
 // Space left under the hero so its rounded bottom edge stays visible
 const BOTTOM_GAP_PX = 16;
@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 z-0">
         <img
           src={IMAGES.homeHero}
-          alt="Surfer riding a green wave"
+          alt="Surfer walking into the sea at sunset in Weligama"
           className="w-full h-full object-cover object-center scale-105 filter brightness-[0.78] contrast-[1.05]"
         />
         {/* Soft vignette gradient overlays */}
@@ -49,9 +49,9 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif-cormorant text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-light tracking-[0.2em] uppercase text-white drop-shadow-lg select-none"
+          className="font-serif-cormorant text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-light tracking-[0.14em] uppercase text-white drop-shadow-lg select-none"
         >
-          BRAVE
+          {CAMP.name}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -59,7 +59,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.9, delay: 0.3 }}
           className="font-serif-cormorant text-lg sm:text-2xl font-light tracking-[0.5em] uppercase text-white/85 -mt-1 sm:-mt-3"
         >
-          Surf School
+          {CAMP.tagline}
         </motion.p>
       </div>
 
@@ -71,7 +71,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           className="font-sans-body text-sm sm:text-base font-light leading-relaxed text-white/90 drop-shadow-md"
         >
-          Paddle out with certified coaches on the warm, steady waves of {SCHOOL.location}. First lesson or fiftieth, we'll get you riding further than you thought you could.
+          A boutique surf camp built by experienced surf hosts, 20 seconds from the beach. Stylish ensuite rooms, professional surf coaching, a rooftop infinity pool and ocean views over Weligama Bay.
         </motion.p>
 
         <motion.div
@@ -81,10 +81,10 @@ export const Hero: React.FC = () => {
           className="pt-2"
         >
           <button
-            onClick={() => openBooking(LESSONS[0].name)}
+            onClick={() => openBooking()}
             className="group relative inline-flex items-center gap-3 bg-white text-[#2a362a] hover:bg-[#f5efe6] font-sans-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] px-8 py-4 rounded-full shadow-xl transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] focus:outline-none"
           >
-            <span>BOOK A LESSON</span>
+            <span>BOOK YOUR STAY</span>
             <ArrowDownRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 text-[#2a362a]" />
           </button>
         </motion.div>
@@ -92,9 +92,11 @@ export const Hero: React.FC = () => {
 
       {/* SUBTLE DECORATIVE ELEMENT */}
       <div className="absolute bottom-6 right-8 hidden sm:flex items-center gap-2 text-white/40 text-[0.625rem] tracking-[0.3em] uppercase font-light pointer-events-none">
-        <span>{SCHOOL.established}</span>
+        <span>{CAMP.badge}</span>
         <span>•</span>
-        <span>{SCHOOL.location}</span>
+        <span>20 seconds to the beach</span>
+        <span>•</span>
+        <span>{CAMP.location}</span>
       </div>
     </section>
   );

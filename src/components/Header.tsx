@@ -5,14 +5,15 @@ import { useModals } from '../context/ModalContext';
 
 export const NAV_ITEMS = [
   { label: 'HOME', to: '/' },
-  { label: 'LESSONS', to: '/lessons' },
-  { label: 'SURF CAMPS', to: '/camps' },
-  { label: 'ABOUT US', to: '/about' },
+  { label: 'RATES', to: '/rates' },
+  { label: 'ACTIVITIES', to: '/activities' },
+  { label: 'THE CAMP', to: '/camp' },
+  { label: 'BLOG', to: '/blog' },
   { label: 'CONTACT', to: '/contact' },
 ];
 
 export const Header: React.FC = () => {
-  const { openCallback } = useModals();
+  const { openBooking } = useModals();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -20,16 +21,16 @@ export const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-6">
         {/* LOGO */}
         <Link to="/" className="flex items-baseline gap-2 group focus:outline-none shrink-0 whitespace-nowrap">
-          <span className="font-serif-cormorant text-4xl lg:text-[2.5rem] xl:text-5xl font-light tracking-[0.12em] text-[#2a362a] group-hover:opacity-90 transition-opacity">
-            BRAVE
+          <span className="font-serif-cormorant text-3xl lg:text-[2rem] xl:text-[2.5rem] font-light tracking-[0.12em] text-[#2a362a] group-hover:opacity-90 transition-opacity">
+            SOUL SURFER
           </span>
-          <span className="hidden sm:inline lg:hidden xl:inline font-serif-cormorant text-sm sm:text-base font-light tracking-[0.3em] text-[#2a362a]/80 uppercase group-hover:opacity-90 transition-opacity">
-            Surf School
+          <span className="hidden sm:inline lg:hidden 2xl:inline font-serif-cormorant text-sm sm:text-base font-light tracking-[0.3em] text-[#2a362a]/80 uppercase group-hover:opacity-90 transition-opacity">
+            Camp
           </span>
         </Link>
 
         {/* DESKTOP NAV LINKS */}
-        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-9">
+        <nav className="hidden lg:flex items-center space-x-5 xl:space-x-8">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
@@ -48,12 +49,12 @@ export const Header: React.FC = () => {
           ))}
         </nav>
 
-        {/* ORDER A CALL BUTTON */}
+        {/* BOOK NOW BUTTON */}
         <button
-          onClick={openCallback}
+          onClick={() => openBooking()}
           className="hidden lg:block shrink-0 whitespace-nowrap px-6 py-2.5 rounded-full border border-[#2a362a]/60 hover:border-[#2a362a] text-[#2a362a] text-xs tracking-[0.2em] font-light uppercase transition-all duration-300 hover:bg-[#2a362a] hover:text-[#f4efe6] shadow-sm hover:shadow-md"
         >
-          ORDER A CALL
+          BOOK NOW
         </button>
 
         {/* MOBILE MENU TOGGLE */}
@@ -88,11 +89,11 @@ export const Header: React.FC = () => {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                openCallback();
+                openBooking();
               }}
               className="w-full py-3 rounded-full border border-[#2a362a] text-[#2a362a] text-xs tracking-[0.2em] font-light uppercase hover:bg-[#2a362a] hover:text-[#f4efe6] transition-all"
             >
-              ORDER A CALL
+              BOOK NOW
             </button>
           </div>
         </div>

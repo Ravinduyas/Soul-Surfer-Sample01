@@ -1,19 +1,23 @@
 import React from 'react';
 import { PageHero } from '../components/PageHero';
 import { ContactsSection } from '../components/ContactsSection';
+import { BookingTermsSection } from '../components/BookingTermsSection';
+import { LocationSection } from '../components/LocationSection';
 import { FaqSection } from '../components/FaqSection';
 import { IMAGES } from '../data/surfData';
 
 export const ContactPage: React.FC = () => (
   <>
     <PageHero
-      eyebrow="Say hello"
+      eyebrow="Get in touch"
       title="Contact"
-      intro="Not sure which lesson suits you, or planning a trip? Get in touch and a coach will help you choose."
+      intro="Questions about packages, rooms or the best time to come? Send us a message or WhatsApp us - we answer every inquiry within 24 hours."
       image={IMAGES.contactHero}
-      imageAlt="Aerial view of a wave rolling onto the beach"
+      imageAlt="Wide view of Weligama Bay"
     />
     <ContactsSection />
+    <BookingTermsSection />
     <FaqSection />
+    <LocationSection />
   </>
 );

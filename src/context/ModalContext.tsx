@@ -1,11 +1,9 @@
 import { createContext, useContext } from 'react';
-import { Lesson } from '../types';
+import { SurfPackage } from '../types';
 
 export interface ModalActions {
   openBooking: (item?: string) => void;
-  openLessonDetail: (lesson: Lesson) => void;
-  openCallback: () => void;
-  openAdvisor: () => void;
+  openPackageDetail: (pkg: SurfPackage) => void;
 }
 
 export const ModalContext = createContext<ModalActions | null>(null);

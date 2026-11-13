@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, Waves } from 'lucide-react';
-import { LESSONS, CAMPS, PACKAGES } from '../data/surfData';
+import { PACKAGES, ROOMS, BOOKING_TERMS } from '../data/surfData';
 
 interface BookingModalProps {
   onClose: () => void;
   preselectedItem?: string;
 }
 
-const BOOKABLE = [
-  ...LESSONS.map((l) => l.name),
-  ...PACKAGES.map((p) => p.name),
-  ...CAMPS.map((c) => c.title),
-];
+const BOOKABLE = PACKAGES.map((p) => p.name);
 
 export const BookingModal: React.FC<BookingModalProps> = ({
   onClose,
-  preselectedItem = LESSONS[0].name
+  preselectedItem = PACKAGES[0].name
 }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -23,12 +19,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     email: '',
     phone: '',
     item: preselectedItem,
+    room: ROOMS[0].name,
+    guests: '1',
     experienceLevel: 'Never surfed',
-    preferredDate: '',
+    arrivalDate: '',
     comments: ''
   });
 
-  // Timetable sessions and other one-off picks are added to the list so they stay selected
+  // Any other pick (e.g. an activity) is added to the list so it stays selected
   const options = BOOKABLE.includes(preselectedItem) ? BOOKABLE : [preselectedItem, ...BOOKABLE];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -56,7 +54,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               Booking Request Sent
             </h3>
             <p className="font-sans-body text-xs sm:text-sm font-light text-[#5c5448] leading-relaxed max-w-sm">
-              Thanks, <span className="font-semibold text-[#2a362a]">{formData.fullName}</span>. We've received your request for <span className="font-semibold text-[#2a362a]">{formData.item}</span>. A coach will confirm your spot and the best tide time by phone or email shortly.
+              Thanks, <span className="font-semibold text-[#2a362a]">{formData.fullName}</span>. We've received your request for <span className="font-semibold text-[#2a362a]">{formData.item}</span>. We'll reply within 24 hours with availability. A 25% non-refundable deposit confirms your reservation.
             </p>
             <button
               onClick={onClose}
@@ -69,10 +67,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           <div>
             <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-[#2a362a] mb-1">
               <Waves className="w-4 h-4 text-amber-700" />
-              <span>Surf with Brave</span>
+              <span>Soul Surfer Camp</span>
             </div>
             <h3 className="font-serif-cormorant text-3xl font-light tracking-[0.14em] uppercase text-[#2a362a] mb-6">
-              BOOK A LESSON
+              BOOK YOUR STAY
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-4 font-sans-body text-xs">
@@ -113,7 +111,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+94 77 000 0000"
+                    placeholder="+44 7700 900000"
                     className="w-full px-4 py-3 rounded-xl bg-[#e9e2d4] border border-[#d2c9b8] text-[#2a362a] focus:outline-none focus:border-[#2a362a]"
                   />
                 </div>
@@ -121,7 +119,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider mb-1 text-[#3d372e]">
-                  Lesson, Package or Camp
+                  Surf Package
                 </label>
                 <select
                   value={formData.item}
@@ -134,6 +132,39 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     </option>
                   ))}
                 </select>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="sm:col-span-2">
+                  <label className="block font-semibold uppercase tracking-wider mb-1 text-[#3d372e]">
+                    Room Type
+                  </label>
+                  <select
+                    value={formData.room}
+                    onChange={(e) => setFormData({ ...formData, room: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-[#e9e2d4] border border-[#d2c9b8] text-[#2a362a] focus:outline-none focus:border-[#2a362a]"
+                  >
+                    {ROOMS.map((room) => (
+                      <option key={room.id} value={room.name}>
+                        {room.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block font-semibold uppercase tracking-wider mb-1 text-[#3d372e]">
+                    Guests
+                  </label>
+                  <select
+                    value={formData.guests}
+                    onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-[#e9e2d4] border border-[#d2c9b8] text-[#2a362a] focus:outline-none focus:border-[#2a362a]"
+                  >
+                    {['1', '2', '3', '4', '5', '6'].map((n) => (
+                      <option key={n} value={n}>{n}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -154,12 +185,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 </div>
                 <div>
                   <label className="block font-semibold uppercase tracking-wider mb-1 text-[#3d372e]">
-                    Preferred Date
+                    Arrival Date
                   </label>
                   <input
                     type="date"
-                    value={formData.preferredDate}
-                    onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
+                    value={formData.arrivalDate}
+                    onChange={(e) => setFormData({ ...formData, arrivalDate: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-[#e9e2d4] border border-[#d2c9b8] text-[#2a362a] focus:outline-none focus:border-[#2a362a]"
                   />
                 </div>
@@ -173,7 +204,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   rows={3}
                   value={formData.comments}
                   onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
-                  placeholder="Group size, swimming confidence, injuries, or goals..."
+                  placeholder="Flight times, dietary needs, surf goals, or any special requests..."
                   className="w-full px-4 py-3 rounded-xl bg-[#e9e2d4] border border-[#d2c9b8] text-[#2a362a] focus:outline-none focus:border-[#2a362a] resize-none"
                 />
               </div>
@@ -185,6 +216,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 >
                   Send Booking Request
                 </button>
+                <p className="mt-3 text-[0.6875rem] text-[#6b6255] font-light leading-relaxed text-center">
+                  {BOOKING_TERMS.cancellation}
+                </p>
               </div>
             </form>
           </div>

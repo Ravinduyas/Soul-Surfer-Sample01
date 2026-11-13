@@ -1,10 +1,10 @@
 import React from 'react';
 
 const STATS = [
-  { value: '6:1', label: 'Max surfers per coach' },
-  { value: '2 hrs', label: 'Average lesson in the water' },
-  { value: '3', label: 'Breaks for every level' },
-  { value: 'Nov - Apr', label: 'Peak surf season' },
+  { value: '20 sec', label: 'Walk to the beach' },
+  { value: 'ISA', label: 'Certified surf instructors' },
+  { value: 'From €390', label: '7 nights, surf & stay' },
+  { value: 'All levels', label: 'Beginner to advanced' },
 ];
 
 export const StatsStrip: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
-import { PACKAGES } from '../data/surfData';
+import { PACKAGES, PACKAGE_INCLUDES } from '../data/surfData';
 import { useModals } from '../context/ModalContext';
 
 export const PricingSection: React.FC = () => {
@@ -11,10 +11,10 @@ export const PricingSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="mb-10 sm:mb-14">
           <h2 className="font-serif-cormorant text-4xl sm:text-5xl lg:text-6xl font-light tracking-[0.16em] uppercase text-[#3d372e]">
-            PRICES
+            SURF & YOGA PACKAGES
           </h2>
           <p className="font-sans-body text-xs sm:text-sm font-light text-[#6b6255] mt-2">
-            Board, leash and rash vest are included in every lesson
+            Per person · 7 nights · surfboard use included during lessons
           </p>
         </div>
 
@@ -30,7 +30,7 @@ export const PricingSection: React.FC = () => {
             >
               {pkg.highlighted && (
                 <span className="absolute top-6 right-6 text-[0.5625rem] font-sans-body uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#f4efe6] text-[#2a362a] font-semibold">
-                  Most Popular
+                  Most Lessons
                 </span>
               )}
               <div>
@@ -38,14 +38,15 @@ export const PricingSection: React.FC = () => {
                   {pkg.name}
                 </h3>
                 <div className="flex items-baseline gap-2 mt-4">
-                  <span className="font-serif-cormorant text-5xl font-light">{pkg.price}</span>
-                  <span className={`font-sans-body text-xs ${pkg.highlighted ? 'text-[#f4efe6]/70' : 'text-[#6b6255]'}`}>{pkg.unit}</span>
+                  <span className={`font-sans-body text-xs ${pkg.highlighted ? 'text-[#f4efe6]/70' : 'text-[#6b6255]'}`}>From</span>
+                  <span className="font-serif-cormorant text-5xl font-light">€{pkg.rates.dorm}</span>
+                  <span className={`font-sans-body text-xs ${pkg.highlighted ? 'text-[#f4efe6]/70' : 'text-[#6b6255]'}`}>per person</span>
                 </div>
                 <p className={`font-sans-body text-xs font-light leading-relaxed mt-4 ${pkg.highlighted ? 'text-[#f4efe6]/80' : 'text-[#5c5448]'}`}>
-                  {pkg.description}
+                  {pkg.subtitle}
                 </p>
                 <ul className="mt-6 space-y-2.5">
-                  {pkg.features.map((feature) => (
+                  {[`Surf: ${pkg.surfLessons}`, `Yoga: ${pkg.yoga}`, ...PACKAGE_INCLUDES].map((feature) => (
                     <li key={feature} className="flex items-center gap-2.5 text-xs font-sans-body">
                       <CheckCircle2 className={`w-4 h-4 shrink-0 ${pkg.highlighted ? 'text-emerald-300' : 'text-emerald-700'}`} />
                       <span>{feature}</span>
@@ -67,6 +68,9 @@ export const PricingSection: React.FC = () => {
             </div>
           ))}
         </div>
+        <p className="font-sans-body text-xs font-light text-[#6b6255] mt-8">
+          Prices shown are the dormitory bed rate. Private single and double / twin rooms are available - see the full rates below.
+        </p>
       </div>
     </section>
   );
